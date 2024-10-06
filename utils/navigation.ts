@@ -4,20 +4,32 @@ export const navigation: NavigationLink[] = [
 	{
 		id: 1,
 		to: "/",
-		label: "Home",
-		icon: "i-heroicons-home-solid",
+		label: "Сводка",
+		icon: "i-heroicons-presentation-chart-line-solid",
 	},
 	{
 		id: 2,
-		to: "/about",
-		label: "About",
-		icon: "i-heroicons-information-circle-solid",
+		to: "/courses",
+		label: "Все курсы",
+		icon: "i-heroicons-academic-cap-solid",
 	},
 	{
 		id: 3,
-		to: "/help",
-		label: "Help",
-		icon: "i-heroicons-user-group-solid",
+		to: "/teachers",
+		label: "Преподаватели",
+		icon: "i-heroicons-identification-solid",
+	},
+	{
+		id: 4,
+		to: "/chats",
+		label: "Чаты",
+		icon: "i-heroicons-chat-bubble-bottom-center-text-solid",
+	},
+	{
+		id: 5,
+		to: "/schedule",
+		label: "Расписание",
+		icon: "i-heroicons-calendar-date-range-solid",
 	},
 ];
 

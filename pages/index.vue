@@ -1,52 +1,86 @@
 <script setup lang="ts">
-import { useAnimeStore } from "~/stores/anime";
-import ImageCard from "~/components/layout/ImageCard.vue";
-const toast = useToast();
+import { CardSizes } from "~/types/ui/CardSizes";
+import { mockTests } from "~/types/ui/TestCard";
+import { mockNews } from "~/types/ui/News";
 
-const animeStore = useAnimeStore();
-animeStore.getArts(false);
+definePageMeta({
+	middleware: ["auth"],
+});
 
-const name = ref("");
+const infoBadges = computed(() => [
+	{ label: mockTests.length + " тестов", color: "gray" },
+	{
+		label: mockTests.filter((t) => t.isCompleted).length + " выполнено",
+		color: "green",
+	},
+	{ label: "Средний балл - 4.3", color: "blue" },
+]);
 </script>
 
 <template>
-	<PageSection
-		title="Welcome to the homepage"
-		icon="i-heroicons-home-solid"
-		:is-divided="false"
-	>
-		<TitledBlock title="">
-			<Grid v-auto-animate>
-				<ImageCard
-					v-for="image in animeStore.nekoArts"
-					:key="image.url"
-					:alt="image.artist_name"
-					:url="image.url"
-				>
-					<div class="flex items-center gap-1">
-						<NuxtLink
-							class="font-bold text-lg"
-							:to="image.artist_href"
-							:external="true"
-							target="_blank"
-							>{{ image.artist_name }}</NuxtLink
-						>
-						•
-						<NuxtLink
-							:to="image.source_url"
-							:external="true"
-							target="_blank"
-							>Source</NuxtLink
-						>
-					</div>
-				</ImageCard>
-				<UButton
-					label="Load more"
-					@click="animeStore.getArts(true)"
-					icon="i-heroicons-chevron-down"
-					class="col-span-full"
+	<div class="flex flex-col gap-8">
+		<UCard :ui="CardSizes.sm">
+			<template #header>
+				<div class="flex gap-12">
+					<PageSection
+						title="Русский язык"
+						icon="i-heroicons-language-20-solid"
+						:is-divided="false"
+						size="sm"
+					>
+						<div class="flex gap-2 opacity-80">
+							<UBadge
+								v-for="badge in infoBadges"
+								:key="badge.label"
+								:label="badge.label"
+								:color="badge.color"
+							/>
+						</div>
+					</PageSection>
+
+					<PageSection
+						title="Иванов Иван Иванович"
+						class="col-span-2"
+						size="sm"
+						icon="i-heroicons-academic-cap-solid"
+						:is-divided="false"
+					>
+						<div class="flex flex-col gap-2">
+							<div class="flex w-1/2 gap-2">
+								<UButton
+									size="2xs"
+									variant="link"
+									label="Сообщение"
+									icon="i-heroicons-chat-bubble-left-ellipsis-solid"
+								/>
+								<UButton
+									icon="i-heroicons-user-solid"
+									size="2xs"
+									variant="link"
+								/>
+							</div>
+						</div>
+					</PageSection>
+				</div>
+			</template>
+
+			<div class="flex justify-between">
+				<TestsBlock />
+			</div>
+		</UCard>
+
+		<PageSection
+			:is-divided="false"
+			title="Новости и обновления"
+			icon="i-heroicons-newspaper-solid"
+		>
+			<div class="grid grid-cols-3 gap-4 w-full">
+				<NewsCard
+					v-for="news in mockNews"
+					:news="news"
+					:key="news.id"
 				/>
-			</Grid>
-		</TitledBlock>
-	</PageSection>
+			</div>
+		</PageSection>
+	</div>
 </template>

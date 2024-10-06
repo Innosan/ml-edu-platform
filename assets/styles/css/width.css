@@ -1,11 +1,9 @@
-header, footer div, .page-container {
-	width: 90vw;
+footer div, .page-container {
+	width: 95vw;
 	margin: 0 auto;
 }
 
 .page-container {
 	display: flex;
-	flex-direction: column;
 	padding-bottom: 2rem;
-	gap: 2em;
 }

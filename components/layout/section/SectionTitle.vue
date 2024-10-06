@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { type SectionSize, SectionSizes } from "~/types/ui/SectionSizes";
+import { type SectionSizeKey, SectionSizes } from "~/types/ui/SectionSizes";
 
 const props = defineProps({
 	title: {
@@ -12,17 +12,19 @@ const props = defineProps({
 		default: "",
 	},
 	size: {
-		type: Object as PropType<SectionSize>,
-		required: true,
+		type: String as PropType<SectionSizeKey>,
+		default: "md",
 	},
 });
+
+const sectionSize = SectionSizes[props.size];
 </script>
 
 <template>
 	<div class="flex items-center gap-2">
-		<UIcon v-if="icon" :name="icon" :class="size.iconSize" />
+		<UIcon v-if="icon" :name="icon" :class="sectionSize.icon" />
 
-		<h2 class="font-bold" :class="size.titleSize">
+		<h2 class="font-bold" :class="sectionSize.title">
 			{{ title }}
 		</h2>
 	</div>

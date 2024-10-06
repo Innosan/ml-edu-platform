@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { type SectionSize, SectionSizes } from "~/types/ui/SectionSizes";
+import { type SectionSizeKey, SectionSizes } from "~/types/ui/SectionSizes";
 
 const props = defineProps({
 	title: {
@@ -12,18 +12,20 @@ const props = defineProps({
 		default: "",
 	},
 	size: {
-		type: Object as PropType<SectionSize>,
-		default: () => SectionSizes.md,
+		type: String as PropType<SectionSizeKey>,
+		default: "md",
 	},
 	isDivided: {
 		type: Boolean,
 		default: true,
 	},
 });
+
+const sectionSize = SectionSizes[props.size];
 </script>
 
 <template>
-	<section class="flex flex-col" :class="size.sectionSpacing">
+	<section class="flex flex-col" :class="sectionSize.spacing">
 		<SectionTitle :title="title" :icon="icon" :size="size" />
 
 		<slot />

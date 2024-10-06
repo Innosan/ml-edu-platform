@@ -1,18 +1,25 @@
 export type SectionSize = {
-	sectionSpacing: string;
-	titleSize: string;
-	iconSize: string;
+	spacing: string;
+	title: string;
+	icon: string;
 };
 
 export const SectionSizes = {
-	sm: <SectionSize>{
-		sectionSpacing: "gap-2",
-		titleSize: "text-lg",
-		iconSize: "w-4 h-4",
+	xs: {
+		spacing: "gap-1",
+		title: "text-sm",
+		icon: "w-3 h-3",
 	},
-	md: <SectionSize>{
-		sectionSpacing: "gap-4",
-		titleSize: "text-xl",
-		iconSize: "w-6 h-6",
+	sm: {
+		spacing: "gap-2",
+		title: "text-lg",
+		icon: "w-4 h-4",
 	},
-};
+	md: {
+		spacing: "gap-4",
+		title: "text-xl",
+		icon: "w-6 h-6",
+	},
+} as const;
+
+export type SectionSizeKey = keyof typeof SectionSizes;
