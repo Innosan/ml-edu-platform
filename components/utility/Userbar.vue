@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { CardSizes } from "~/types/ui/CardSizes";
-import { SectionSizes } from "~/types/ui/SectionSizes";
 
-const userStore = useEduUserStore();
+const userStore = useUserStore();
 </script>
 
 <template>

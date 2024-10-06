@@ -2,7 +2,7 @@
 definePageMeta({
 	middleware: ["auth"],
 });
-const userStore = useEduUserStore();
+const userStore = useUserStore();
 
 const email = ref("");
 const password = ref("");

@@ -4,8 +4,8 @@ import { getToast, Toasts } from "~/types/ui/Notification";
 import { persistOptions } from "~/utils/persistence";
 import { defineStore } from "pinia";
 
-export const useEduUserStore = defineStore(
-	"edu-user-store",
+export const useUserStore = defineStore(
+	"user-store",
 	() => {
 		const toast = useToast();
 		const user = useState("current-user", () => noUser as User);

@@ -1,7 +1,7 @@
 const authProtectedRoutes = navigation.map((link) => link.to);
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
-	const userStore = useEduUserStore();
+	const userStore = useUserStore();
 	userStore.$subscribe((cb) => {
 		console.log(cb);
 	});
