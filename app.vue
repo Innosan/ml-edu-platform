@@ -7,12 +7,16 @@ appConfig.ui.primary = settingsStore.primaryColor;
 
 <template>
 	<div>
-		<div class="page-container gap-4 justify-between items-start">
-			<BaseSidebar />
-			<div class="w-full">
+		<div
+			class="grid grid-cols-1 items-start md:grid-cols-4 lg:grid-cols-6 gap-8"
+		>
+			<BaseSidebar class="md:col-span-2 lg:col-span-1 order-first" />
+			<div class="w-full md:col-span-4 lg:order-2 lg:col-span-4">
 				<NuxtPage />
 			</div>
-			<BaseUserbar />
+			<BaseUserbar
+				class="md:-order-2 -order-2 lg:order-last lg:col-span-1 md:col-span-2"
+			/>
 		</div>
 
 		<UNotifications />

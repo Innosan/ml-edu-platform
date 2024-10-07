@@ -3,7 +3,7 @@ import { CardSizes } from "~/types/ui/CardSizes";
 </script>
 
 <template>
-	<UCard :ui="CardSizes.sm">
+	<UCard :ui="CardSizes.sm" class="w-full">
 		<div class="flex gap-2 flex-col">
 			<PageSection
 				size="xs"

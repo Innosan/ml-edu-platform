@@ -32,9 +32,9 @@ const navigation = computed(() => {
 <template>
 	<header
 		v-if="role !== UserRoles.GUEST"
-		class="flex text-nowrap items-center"
+		class="flex w-full text-nowrap items-center"
 	>
-		<div class="flex flex-col gap-6 items-center">
+		<div class="flex flex-col w-full gap-6 items-center">
 			<UVerticalNavigation :links="navigation" class="w-full" />
 			<UButton
 				label="Выйти"
