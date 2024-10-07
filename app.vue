@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const settingsStore = useSettingsStore();
 const appConfig = useAppConfig();
-const route = useRoute();
 
 appConfig.ui.primary = settingsStore.primaryColor;
 </script>
@@ -10,8 +9,8 @@ appConfig.ui.primary = settingsStore.primaryColor;
 	<div>
 		<div class="page-container gap-4 justify-between items-start">
 			<BaseSidebar />
-			<div class="w-full" v-auto-animate>
-				<NuxtPage :key="route" />
+			<div class="w-full">
+				<NuxtPage />
 			</div>
 			<BaseUserbar />
 		</div>
