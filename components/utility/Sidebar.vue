@@ -20,13 +20,6 @@ const userStore = useUserStore();
 				class="w-full"
 			/>
 			<UCard :ui="CardSizes.sm">
-				<template #header>
-					<div class="flex gap-1 text-sm">
-						<p>12 сентября</p>
-						•
-						<p>Четная неделя</p>
-					</div>
-				</template>
 				<div class="flex gap-2 flex-col">
 					<PageSection
 						size="xs"

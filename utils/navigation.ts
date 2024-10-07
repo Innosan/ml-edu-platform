@@ -13,18 +13,18 @@ export const navigation: NavigationLink[] = [
 		label: "Все курсы",
 		icon: "i-heroicons-academic-cap-solid",
 	},
-	{
-		id: 3,
-		to: "/teachers",
-		label: "Преподаватели",
-		icon: "i-heroicons-identification-solid",
-	},
-	{
-		id: 4,
-		to: "/chats",
-		label: "Чаты",
-		icon: "i-heroicons-chat-bubble-bottom-center-text-solid",
-	},
+	// {
+	// 	id: 3,
+	// 	to: "/teachers",
+	// 	label: "Преподаватели",
+	// 	icon: "i-heroicons-identification-solid",
+	// },
+	// {
+	// 	id: 4,
+	// 	to: "/chats",
+	// 	label: "Чаты",
+	// 	icon: "i-heroicons-chat-bubble-bottom-center-text-solid",
+	// },
 	{
 		id: 5,
 		to: "/schedule",

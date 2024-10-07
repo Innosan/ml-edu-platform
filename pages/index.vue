@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BadgeColor } from "#ui/types";
+
 import { CardSizes } from "~/types/ui/CardSizes";
 import { mockTests } from "~/types/ui/TestCard";
 import { mockNews } from "~/types/ui/News";
@@ -33,32 +35,8 @@ const infoBadges = computed(() => [
 								v-for="badge in infoBadges"
 								:key="badge.label"
 								:label="badge.label"
-								:color="badge.color"
+								:color="badge.color as BadgeColor"
 							/>
-						</div>
-					</PageSection>
-
-					<PageSection
-						title="Иванов Иван Иванович"
-						class="col-span-2"
-						size="sm"
-						icon="i-heroicons-academic-cap-solid"
-						:is-divided="false"
-					>
-						<div class="flex flex-col gap-2">
-							<div class="flex w-1/2 gap-2">
-								<UButton
-									size="2xs"
-									variant="link"
-									label="Сообщение"
-									icon="i-heroicons-chat-bubble-left-ellipsis-solid"
-								/>
-								<UButton
-									icon="i-heroicons-user-solid"
-									size="2xs"
-									variant="link"
-								/>
-							</div>
 						</div>
 					</PageSection>
 				</div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TestCard } from "~/types/ui/TestCard";
+import type { ButtonColor } from "#ui/types";
 
 const props = defineProps({
 	test: {
@@ -24,7 +25,15 @@ const buttonState = computed(() => {
 		class="flex p-2 ring-1 ring-gray-200 dark:ring-gray-700 gap-2 rounded-lg flex-col"
 	>
 		<div>
-			<p class="font-bold">{{ test.title }}</p>
+			<div class="flex gap-1 items-center">
+				<p class="font-bold">{{ test.title }}</p>
+				•
+				<p
+					class="underline decoration-gray-700 decoration-dotted underline-offset-2 opacity-70 text-sm"
+				>
+					Петров В. И.
+				</p>
+			</div>
 			<div class="flex text-sm gap-1 opacity-70">
 				<p>{{ test.question }} вопросов</p>
 				•
@@ -35,7 +44,7 @@ const buttonState = computed(() => {
 			:label="buttonState.label"
 			variant="link"
 			size="xs"
-			:color="buttonState.color"
+			:color="buttonState.color as ButtonColor"
 			:icon="buttonState.icon"
 		/>
 	</div>

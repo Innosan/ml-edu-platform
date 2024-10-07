@@ -1,4 +1,4 @@
-import { noUser, User, users } from "~/types/data/User";
+import { noUser, type User, users } from "~/types/data/User";
 import { getToast, Toasts } from "~/types/ui/Notification";
 
 import { persistOptions } from "~/utils/persistence";
