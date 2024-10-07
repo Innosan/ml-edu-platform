@@ -5,7 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-	<PageSection title="Курсы" />
+	<PageSection title="Тесты" />
 </template>
-
-<style scoped></style>

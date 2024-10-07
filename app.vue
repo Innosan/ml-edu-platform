@@ -9,11 +9,11 @@ appConfig.ui.primary = settingsStore.primaryColor;
 <template>
 	<div>
 		<div class="page-container gap-4 justify-between items-start">
-			<Sidebar />
+			<BaseSidebar />
 			<div class="w-full" v-auto-animate>
 				<NuxtPage :key="route" />
 			</div>
-			<Userbar />
+			<BaseUserbar />
 		</div>
 
 		<UNotifications />

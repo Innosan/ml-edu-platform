@@ -1,6 +1,6 @@
 import type { NavigationLink } from "~/types/utility/NavigationLink";
 
-export const navigation: NavigationLink[] = [
+export const userNavigation: NavigationLink[] = [
 	{
 		id: 1,
 		to: "/",
@@ -33,17 +33,23 @@ export const navigation: NavigationLink[] = [
 	},
 ];
 
-export const socials: NavigationLink[] = [
+export const teacherNavigation: NavigationLink[] = [
 	{
 		id: 1,
-		to: "https://github.com",
-		label: "GitHub",
-		icon: "i-octicon-mark-github-16",
+		to: "/",
+		label: "Сводка",
+		icon: "i-heroicons-presentation-chart-line-solid",
 	},
 	{
 		id: 2,
-		to: "https://telegram.com",
-		label: "Telegram",
-		icon: "i-streamline-telegram-solid",
+		to: "/tests",
+		label: "Все тесты",
+		icon: "i-heroicons-academic-cap-solid",
+	},
+	{
+		id: 3,
+		to: "/students",
+		label: "Студенты",
+		icon: "i-heroicons-users-solid",
 	},
 ];

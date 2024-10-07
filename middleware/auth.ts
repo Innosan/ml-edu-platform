@@ -1,4 +1,8 @@
-const authProtectedRoutes = navigation.map((link) => link.to);
+import { teacherNavigation, userNavigation } from "~/utils/navigation";
+
+// should be both user and teacher routes
+const authProtectedRoutes = userNavigation.map((nav) => nav.to);
+authProtectedRoutes.push(...teacherNavigation.map((nav) => nav.to));
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
 	const userStore = useUserStore();
