@@ -6,6 +6,8 @@ export const useSettingsStore = defineStore(
 		const primaryColor = ref("violet");
 		const grayColor = ref("zinc");
 
+		const testsView = ref("list");
+
 		const setPrimaryColor = (color: string) => {
 			primaryColor.value = color;
 		};
@@ -14,11 +16,17 @@ export const useSettingsStore = defineStore(
 			grayColor.value = color;
 		};
 
+		const setTestsView = (view: "list" | "calendar") => {
+			testsView.value = view;
+		};
+
 		return {
 			primaryColor,
 			grayColor,
+			testsView,
 			setPrimaryColor,
 			setGrayColor,
+			setTestsView,
 		};
 	},
 	{

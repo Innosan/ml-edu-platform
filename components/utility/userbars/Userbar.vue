@@ -1,12 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<PageSection
-		size="sm"
-		title="Ближайший тест"
-		icon="i-heroicons-calendar"
-		:is-divided="false"
-	>
+	<PageSection size="sm" title="Ближайший тест" icon="i-heroicons-calendar">
 		<div class="flex flex-col bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
 			<div class="flex gap-1 text-sm opacity-70">
 				<p>до 15 сентября</p>
@@ -17,12 +12,7 @@
 		</div>
 	</PageSection>
 
-	<PageSection
-		size="sm"
-		title="Успеваемость"
-		icon="i-heroicons-chart-pie"
-		:is-divided="false"
-	>
+	<PageSection size="sm" title="Успеваемость" icon="i-heroicons-chart-pie">
 		<div class="flex flex-col gap-3">
 			<TitledBlock title="Средний балл">
 				<p>4.5</p>

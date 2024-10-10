@@ -17,7 +17,7 @@ const props = defineProps({
 	},
 	isDivided: {
 		type: Boolean,
-		default: true,
+		default: false,
 	},
 });
 

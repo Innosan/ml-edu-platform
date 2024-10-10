@@ -1,5 +1,15 @@
 import type { NavigationLink } from "~/types/utility/NavigationLink";
 
+export const weekdays = [
+	"Понедельник",
+	"Вторник",
+	"Среда",
+	"Четверг",
+	"Пятница",
+	"Суббота",
+	"Воскресенье",
+];
+
 export const userNavigation: NavigationLink[] = [
 	{
 		id: 1,
@@ -12,6 +22,12 @@ export const userNavigation: NavigationLink[] = [
 		to: "/courses",
 		label: "Все курсы",
 		icon: "i-heroicons-academic-cap-solid",
+	},
+	{
+		id: 3,
+		to: "/settings",
+		label: "Настройки",
+		icon: "i-heroicons-gear-solid",
 	},
 	// {
 	// 	id: 3,
@@ -51,5 +67,11 @@ export const teacherNavigation: NavigationLink[] = [
 		to: "/students",
 		label: "Студенты",
 		icon: "i-heroicons-users-solid",
+	},
+	{
+		id: 3,
+		to: "/settings",
+		label: "Настройки",
+		icon: "i-heroicons-gear-solid",
 	},
 ];

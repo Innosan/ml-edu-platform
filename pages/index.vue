@@ -4,6 +4,7 @@ import type { BadgeColor } from "#ui/types";
 import { CardSizes } from "~/types/ui/CardSizes";
 import { mockTests } from "~/types/ui/TestCard";
 import { mockNews } from "~/types/ui/News";
+import TestsViewChanger from "~/components/settings/TestsViewChanger.vue";
 
 definePageMeta({
 	middleware: ["auth"],
@@ -17,6 +18,8 @@ const infoBadges = computed(() => [
 	},
 	{ label: "Средний балл - 4.3", color: "blue" },
 ]);
+
+const settingsStore = useSettingsStore();
 </script>
 
 <template>
@@ -27,7 +30,6 @@ const infoBadges = computed(() => [
 					<PageSection
 						title="Русский язык"
 						icon="i-heroicons-language-20-solid"
-						:is-divided="false"
 						size="sm"
 					>
 						<div class="flex gap-2 opacity-80">
@@ -38,17 +40,18 @@ const infoBadges = computed(() => [
 								:color="badge.color as BadgeColor"
 							/>
 						</div>
+						<TestsViewChanger />
 					</PageSection>
 				</div>
 			</template>
 
-			<div class="flex justify-between">
-				<TestsBlock />
+			<div class="flex p-2 justify-between">
+				<TestsBlock v-if="settingsStore.testsView === 'list'" />
+				<TestsCalendar v-else />
 			</div>
 		</UCard>
 
 		<PageSection
-			:is-divided="false"
 			title="Новости и обновления"
 			icon="i-heroicons-newspaper-solid"
 		>
