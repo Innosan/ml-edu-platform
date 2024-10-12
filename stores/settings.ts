@@ -1,4 +1,5 @@
 import { persistOptions } from "~/utils/persistence";
+import { TestViews } from "~/types/ui/TestViews";
 
 export const useSettingsStore = defineStore(
 	"settings-store",
@@ -6,7 +7,7 @@ export const useSettingsStore = defineStore(
 		const primaryColor = ref("violet");
 		const grayColor = ref("zinc");
 
-		const testsView = ref("list");
+		const testsView = ref(TestViews.LIST);
 
 		const setPrimaryColor = (color: string) => {
 			primaryColor.value = color;
@@ -16,7 +17,7 @@ export const useSettingsStore = defineStore(
 			grayColor.value = color;
 		};
 
-		const setTestsView = (view: "list" | "calendar") => {
+		const setTestsView = (view: number) => {
 			testsView.value = view;
 		};
 
@@ -24,6 +25,7 @@ export const useSettingsStore = defineStore(
 			primaryColor,
 			grayColor,
 			testsView,
+
 			setPrimaryColor,
 			setGrayColor,
 			setTestsView,

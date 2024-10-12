@@ -17,20 +17,7 @@ const buttonStates = computed(() => {
 	<PageSection title="Настройки">
 		<div class="flex flex-col gap-4">
 			<TitledBlock title="Вид тестов">
-				<UButtonGroup>
-					<UButton
-						@click="settingsStore.setTestsView('list')"
-						:color="buttonStates.color"
-						:variant="buttonStates.variant"
-						label="Список"
-					/>
-					<UButton
-						@click="settingsStore.setTestsView('calendar')"
-						:color="buttonStates.calendarColor"
-						:variant="buttonStates.calendarVariant"
-						label="Календарь"
-					/>
-				</UButtonGroup>
+				<TestsViewChanger />
 			</TitledBlock>
 		</div>
 	</PageSection>

@@ -25,7 +25,7 @@ const userbarComponent = computed(() => {
 	>
 		<UCard :ui="CardSizes.sm">
 			<template #header>
-				<p class="font-bold text-xl">
+				<p class="font-bold text-wrap text-xl">
 					Добрый вечер, {{ userStore.user.name }}!
 				</p>
 			</template>

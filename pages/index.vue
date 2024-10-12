@@ -5,6 +5,7 @@ import { CardSizes } from "~/types/ui/CardSizes";
 import { mockTests } from "~/types/ui/TestCard";
 import { mockNews } from "~/types/ui/News";
 import TestsViewChanger from "~/components/settings/TestsViewChanger.vue";
+import { TestViews } from "~/types/ui/TestViews";
 
 definePageMeta({
 	middleware: ["auth"],
@@ -46,7 +47,7 @@ const settingsStore = useSettingsStore();
 			</template>
 
 			<div class="flex p-2 justify-between">
-				<TestsBlock v-if="settingsStore.testsView === 'list'" />
+				<TestsBlock v-if="settingsStore.testsView === TestViews.LIST" />
 				<TestsCalendar v-else />
 			</div>
 		</UCard>
