@@ -1,17 +1,4 @@
-<script setup lang="ts">
-const settingsStore = useSettingsStore();
-
-const buttonStates = computed(() => {
-	return {
-		color: settingsStore.testsView === "list" ? "primary" : "gray",
-		calendarColor:
-			settingsStore.testsView === "calendar" ? "primary" : "gray",
-		variant: settingsStore.testsView === "list" ? "solid" : "outline",
-		calendarVariant:
-			settingsStore.testsView === "calendar" ? "solid" : "outline",
-	};
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
 	<PageSection title="Настройки">

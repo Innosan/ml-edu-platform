@@ -7,9 +7,4 @@ a:hover {
   opacity: 0.9;
 }
 
-.router-link-exact-active {
-  opacity: 1 !important;
-  text-decoration: underline;
-}
-
 /*# sourceMappingURL=navigation.css.map */
