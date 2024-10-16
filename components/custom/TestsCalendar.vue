@@ -69,10 +69,10 @@ const currentMonthDays = computed(() => {
 		<!-- Days of the Month -->
 		<div v-for="day in currentMonthDays" :key="day.day.dayMonth">
 			<div
-				class="flex flex-col p-2 rounded-xl ring-1 ring-gray-200"
+				class="flex bg-transparent flex-col p-2 rounded-xl ring-1 ring-gray-200 dark:ring-gray-700"
 				:class="
 					day.isToday
-						? 'bg-primary-100 ring-primary-300'
+						? 'bg-primary-100 dark:bg-primary-800/20 ring-primary-300 dark:ring-primary-400'
 						: 'bg-gray-50'
 				"
 			>
