@@ -2,6 +2,16 @@
 definePageMeta({
 	middleware: ["auth"],
 });
+
+useHead({
+	title: "Вход",
+	meta: [
+		{
+			name: "description",
+			content: "Войдите в свой аккаунт",
+		},
+	],
+});
 const userStore = useUserStore();
 
 const tabs = [
