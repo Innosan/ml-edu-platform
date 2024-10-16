@@ -4,8 +4,17 @@ import type { BadgeColor } from "#ui/types";
 import { CardSizes } from "~/types/ui/CardSizes";
 import { mockTests } from "~/types/ui/TestCard";
 import { mockNews } from "~/types/ui/News";
-import TestsViewChanger from "~/components/settings/TestsViewChanger.vue";
 import { TestViews } from "~/types/ui/TestViews";
+
+useHead({
+	title: "Главная",
+	meta: [
+		{
+			name: "description",
+			content: "Ваш личный кабинет и статистика",
+		},
+	],
+});
 
 definePageMeta({
 	middleware: ["auth"],
