@@ -139,6 +139,13 @@ const clearInputs = () => {
 						</div>
 					</TitledBlock>
 				</div>
+
+				<UAlert
+					class="mt-4"
+					icon="i-heroicons-information-circle-solid"
+					title="Доступные аккаунты для входа"
+					description="user@gmail.com:password, teacher@gmail.com:password1"
+				/>
 			</template>
 		</UTabs>
 
