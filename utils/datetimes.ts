@@ -21,3 +21,18 @@ export const getRelativeTime = (date: string) => {
 		}
 	}
 };
+
+export const prettifyDayTitle = (date: Date) => {
+	const options: Intl.DateTimeFormatOptions = {
+		weekday: "long",
+		day: "numeric",
+		month: "long",
+	};
+	const formattedDate = date.toLocaleDateString("ru-RU", options);
+	const [weekday, dayMonth] = formattedDate.split(", ");
+
+	return {
+		weekday,
+		dayMonth,
+	};
+};

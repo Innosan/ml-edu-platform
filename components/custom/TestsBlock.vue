@@ -15,7 +15,9 @@ const testsToShow = computed(() => {
 
 <template>
 	<div class="flex flex-col w-full gap-4">
-		<div class="grid grid-cols-3 w-full gap-4 justify-between">
+		<div
+			class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-4 justify-between"
+		>
 			<TestCard v-for="test in testsToShow" :test="test" :key="test.id" />
 		</div>
 

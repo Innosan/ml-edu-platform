@@ -1,7 +1,20 @@
 <script setup lang="ts">
+import type { BadgeColor } from "#ui/types";
+
 import { CardSizes } from "~/types/ui/CardSizes";
 import { mockTests } from "~/types/ui/TestCard";
 import { mockNews } from "~/types/ui/News";
+import { TestViews } from "~/types/ui/TestViews";
+
+useHead({
+	title: "Главная",
+	meta: [
+		{
+			name: "description",
+			content: "Ваш личный кабинет и статистика",
+		},
+	],
+});
 
 definePageMeta({
 	middleware: ["auth"],
@@ -15,6 +28,8 @@ const infoBadges = computed(() => [
 	},
 	{ label: "Средний балл - 4.3", color: "blue" },
 ]);
+
+const settingsStore = useSettingsStore();
 </script>
 
 <template>
@@ -25,7 +40,6 @@ const infoBadges = computed(() => [
 					<PageSection
 						title="Русский язык"
 						icon="i-heroicons-language-20-solid"
-						:is-divided="false"
 						size="sm"
 					>
 						<div class="flex gap-2 opacity-80">
@@ -33,44 +47,21 @@ const infoBadges = computed(() => [
 								v-for="badge in infoBadges"
 								:key="badge.label"
 								:label="badge.label"
-								:color="badge.color"
+								:color="badge.color as BadgeColor"
 							/>
 						</div>
-					</PageSection>
-
-					<PageSection
-						title="Иванов Иван Иванович"
-						class="col-span-2"
-						size="sm"
-						icon="i-heroicons-academic-cap-solid"
-						:is-divided="false"
-					>
-						<div class="flex flex-col gap-2">
-							<div class="flex w-1/2 gap-2">
-								<UButton
-									size="2xs"
-									variant="link"
-									label="Сообщение"
-									icon="i-heroicons-chat-bubble-left-ellipsis-solid"
-								/>
-								<UButton
-									icon="i-heroicons-user-solid"
-									size="2xs"
-									variant="link"
-								/>
-							</div>
-						</div>
+						<TestsViewChanger />
 					</PageSection>
 				</div>
 			</template>
 
-			<div class="flex justify-between">
-				<TestsBlock />
+			<div class="flex p-2 justify-between">
+				<TestsBlock v-if="settingsStore.testsView === TestViews.LIST" />
+				<TestsCalendar v-else />
 			</div>
 		</UCard>
 
 		<PageSection
-			:is-divided="false"
 			title="Новости и обновления"
 			icon="i-heroicons-newspaper-solid"
 		>
