@@ -2,12 +2,14 @@ import { type NitroFetchOptions } from "nitropack";
 
 import { persistOptions } from "~/utils/persistence";
 import { errored, success } from "~/types/server/ResponseInfo";
+import { noUser } from "~/types/data/User";
 
 export const useAuthStore = defineStore(
 	"auth-store",
 	() => {
 		const toast = useToast();
 		const config = useRuntimeConfig();
+
 		const accessToken = useState("access-token", () => "");
 		const refreshToken = useState("refresh-token", () => "");
 
@@ -31,13 +33,10 @@ export const useAuthStore = defineStore(
 					},
 				});
 			} catch (error: any) {
-				if (error.response?.status === 403) {
-					await refreshAccessToken();
+				await refreshAccessToken();
 
-					options.headers.Authorization = `Bearer ${accessToken.value}`;
-					return await $fetch(url, options);
-				}
-				throw error;
+				options.headers.Authorization = `Bearer ${accessToken.value}`;
+				return await $fetch(url, options);
 			}
 		};
 
@@ -77,15 +76,17 @@ export const useAuthStore = defineStore(
 
 				accessToken.value = response.accessToken;
 			} catch (error) {
-				console.error("Token refresh failed:", error);
+				toast.add(errored("Пожалуйста, войдите еше раз!").notification);
 
-				//await logout();
+				await logout();
 			}
 		};
 
 		const logout = async () => {
 			accessToken.value = "";
 			refreshToken.value = "";
+
+			toast.add(success("Вы успешно вышли из системы!").notification);
 
 			await navigateTo("/sign-in");
 		};

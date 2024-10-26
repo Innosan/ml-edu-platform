@@ -21,6 +21,7 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
+userStore.fetchUser();
 const authStore = useAuthStore();
 
 const infoBadges = computed(() => [
@@ -37,10 +38,6 @@ const settingsStore = useSettingsStore();
 
 <template>
 	<div class="flex flex-col gap-8">
-		<div class="flex flex-col">
-			<p class="flex text-wrap">{{ authStore.accessToken }}</p>
-			<p class="flex text-wrap">{{ authStore.refreshToken }}</p>
-		</div>
 		<UCard :ui="CardSizes.sm">
 			<template #header>
 				<div class="flex gap-12">

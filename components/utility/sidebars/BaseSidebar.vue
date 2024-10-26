@@ -1,30 +1,18 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { UserRoles } from "~/types/data/User";
 
 import { teacherNavigation, userNavigation } from "~/utils/navigation";
 import { Sidebars } from "~/components/utility/sidebars/Sidebars";
 
 const userStore = useUserStore();
 const authStore = useAuthStore();
-const role = computed(() => userStore.user.role);
 
 const sidebarComponent = computed(() => {
-	switch (role.value) {
-		case UserRoles.TEACHER:
-			return Sidebars.TEACHER;
-		case UserRoles.USER:
-			return Sidebars.USER;
-	}
+	return userStore.user.isTeacher ? Sidebars.TEACHER : Sidebars.USER;
 });
 
 const navigation = computed(() => {
-	switch (role.value) {
-		case UserRoles.TEACHER:
-			return teacherNavigation;
-		case UserRoles.USER:
-			return userNavigation;
-	}
+	return userStore.user.isTeacher ? teacherNavigation : userNavigation;
 });
 </script>
 
@@ -35,7 +23,6 @@ const navigation = computed(() => {
 	>
 		<div class="flex flex-col w-full gap-6 items-center">
 			<UVerticalNavigation :links="navigation" class="w-full" />
-			<UButton @click="userStore.fetchUser()" label="Fetch user" />
 			<UButton
 				label="Выйти"
 				icon="i-heroicons-arrow-right-start-on-rectangle-solid"

@@ -72,6 +72,6 @@ export const teacherNavigation: NavigationLink[] = [
 		id: 3,
 		to: "/settings",
 		label: "Настройки",
-		icon: "i-heroicons-gear-solid",
+		icon: "i-heroicons-cog-solid",
 	},
 ];
