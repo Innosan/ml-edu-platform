@@ -2,10 +2,8 @@
 import { computed } from "vue";
 import { UserRoles } from "~/types/data/User";
 
-import UserSidebar from "~/components/utility/sidebars/UserSidebar.vue";
-import TeacherSidebar from "~/components/utility/sidebars/TeacherSidebar.vue";
-
 import { teacherNavigation, userNavigation } from "~/utils/navigation";
+import { Sidebars } from "~/components/utility/sidebars/Sidebars";
 
 const userStore = useUserStore();
 const authStore = useAuthStore();
@@ -14,9 +12,9 @@ const role = computed(() => userStore.user.role);
 const sidebarComponent = computed(() => {
 	switch (role.value) {
 		case UserRoles.TEACHER:
-			return TeacherSidebar;
+			return Sidebars.TEACHER;
 		case UserRoles.USER:
-			return UserSidebar;
+			return Sidebars.USER;
 	}
 });
 
@@ -37,6 +35,7 @@ const navigation = computed(() => {
 	>
 		<div class="flex flex-col w-full gap-6 items-center">
 			<UVerticalNavigation :links="navigation" class="w-full" />
+			<UButton @click="userStore.fetchUser()" label="Fetch user" />
 			<UButton
 				label="Выйти"
 				icon="i-heroicons-arrow-right-start-on-rectangle-solid"
@@ -51,9 +50,8 @@ const navigation = computed(() => {
 				@click="authStore.refreshAccessToken"
 			/>
 
-			<component :is="sidebarComponent">
-				<slot />
-			</component>
+			<TeacherSidebar v-if="sidebarComponent === Sidebars.TEACHER" />
+			<UserSidebar v-else-if="sidebarComponent === Sidebars.USER" />
 
 			<ClientOnly>
 				<div class="flex self-start gap-2 items-center">

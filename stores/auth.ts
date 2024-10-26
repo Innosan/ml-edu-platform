@@ -31,7 +31,7 @@ export const useAuthStore = defineStore(
 					},
 				});
 			} catch (error: any) {
-				if (error.response?.status === 401) {
+				if (error.response?.status === 403) {
 					await refreshAccessToken();
 
 					options.headers.Authorization = `Bearer ${accessToken.value}`;
@@ -79,7 +79,7 @@ export const useAuthStore = defineStore(
 			} catch (error) {
 				console.error("Token refresh failed:", error);
 
-				await logout();
+				//await logout();
 			}
 		};
 

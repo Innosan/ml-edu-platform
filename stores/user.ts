@@ -14,19 +14,13 @@ export const useUserStore = defineStore(
 
 		const fetchUser = async () => {
 			const response = await authStore.fetchWithAuth(
-				runtimeConfig.public.apiUrl + "/user/",
+				runtimeConfig.public.apiUrl + "/auth/user/",
 				{
 					method: "GET",
 				},
 			);
 
 			console.log(response);
-
-			if (response.status === 200) {
-				user.value = response;
-			} else {
-				console.log(response);
-			}
 		};
 
 		return {

@@ -2,8 +2,7 @@
 import { CardSizes } from "~/types/ui/CardSizes";
 import { UserRoles } from "~/types/data/User";
 
-import Teacherbar from "~/components/utility/userbars/Teacherbar.vue";
-import Userbar from "~/components/utility/userbars/Userbar.vue";
+import { Userbars } from "~/components/utility/userbars/Userbars";
 
 const userStore = useUserStore();
 const authStore = useAuthStore();
@@ -12,9 +11,9 @@ const role = computed(() => userStore.user.role);
 const userbarComponent = computed(() => {
 	switch (role.value) {
 		case UserRoles.TEACHER:
-			return Teacherbar;
+			return Userbars.TEACHER;
 		case UserRoles.USER:
-			return Userbar;
+			return Userbars.USER;
 	}
 });
 </script>
@@ -29,9 +28,8 @@ const userbarComponent = computed(() => {
 			</template>
 
 			<div class="flex gap-6 flex-col">
-				<component :is="userbarComponent">
-					<slot />
-				</component>
+				<Userbar v-if="userbarComponent === Userbars.USER" />
+				<Teacherbar v-else-if="userbarComponent === Userbars.TEACHER" />
 			</div>
 		</UCard>
 	</div>
