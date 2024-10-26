@@ -7,39 +7,31 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore(
 	"user-store",
 	() => {
+		const authStore = useAuthStore();
+		const runtimeConfig = useRuntimeConfig();
 		const toast = useToast();
 		const user = useState("current-user", () => noUser as User);
 
-		const login = (email: string, password: string) => {
-			const foundUser = users.find(
-				(u) => u.email === email && u.password === password,
+		const fetchUser = async () => {
+			const response = await authStore.fetchWithAuth(
+				runtimeConfig.public.apiUrl + "/user/",
+				{
+					method: "GET",
+				},
 			);
 
-			if (foundUser) {
-				user.value = foundUser;
-				toast.add(
-					getToast(Toasts.SUCCESS, "Вы успешно вошли в систему"),
-				);
+			console.log(response);
 
-				navigateTo("/");
-
-				return true;
+			if (response.status === 200) {
+				user.value = response;
+			} else {
+				console.log(response);
 			}
-
-			toast.add(getToast(Toasts.ERROR, "Неверный логин или пароль"));
-			return false;
-		};
-
-		const logout = () => {
-			user.value = noUser;
-			navigateTo("/sign-in");
-			toast.add(getToast(Toasts.INFO, "Вы вышли из системы"));
 		};
 
 		return {
 			user,
-			login,
-			logout,
+			fetchUser,
 		};
 	},
 	{

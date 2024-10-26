@@ -6,6 +6,7 @@ import Teacherbar from "~/components/utility/userbars/Teacherbar.vue";
 import Userbar from "~/components/utility/userbars/Userbar.vue";
 
 const userStore = useUserStore();
+const authStore = useAuthStore();
 const role = computed(() => userStore.user.role);
 
 const userbarComponent = computed(() => {
@@ -19,10 +20,7 @@ const userbarComponent = computed(() => {
 </script>
 
 <template>
-	<div
-		class="flex gap-2 text-nowrap flex-col"
-		v-if="role !== UserRoles.GUEST"
-	>
+	<div class="flex gap-2 text-nowrap flex-col" v-if="authStore.refreshToken">
 		<UCard :ui="CardSizes.sm">
 			<template #header>
 				<p class="font-bold text-wrap text-xl">
