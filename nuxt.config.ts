@@ -7,6 +7,12 @@ export default defineNuxtConfig({
 		},
 	},
 
+	nitro: {
+		routeRules: {
+			"/api/**": { proxy: "http://194.58.114.242:8081/api/v1/**" },
+		},
+	},
+
 	modules: [
 		"@nuxt/ui",
 		"@formkit/auto-animate/nuxt",
