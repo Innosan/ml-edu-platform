@@ -8,6 +8,7 @@ import TeacherSidebar from "~/components/utility/sidebars/TeacherSidebar.vue";
 import { teacherNavigation, userNavigation } from "~/utils/navigation";
 
 const userStore = useUserStore();
+const authStore = useAuthStore();
 const role = computed(() => userStore.user.role);
 
 const sidebarComponent = computed(() => {
@@ -31,7 +32,7 @@ const navigation = computed(() => {
 
 <template>
 	<header
-		v-if="role !== UserRoles.GUEST"
+		v-if="authStore.refreshToken"
 		class="flex w-full text-nowrap items-center"
 	>
 		<div class="flex flex-col w-full gap-6 items-center">
@@ -41,8 +42,13 @@ const navigation = computed(() => {
 				icon="i-heroicons-arrow-right-start-on-rectangle-solid"
 				color="red"
 				variant="soft"
-				@click="userStore.logout"
+				@click="authStore.logout"
 				class="w-full"
+			/>
+
+			<UButton
+				label="Refresh token"
+				@click="authStore.refreshAccessToken"
 			/>
 
 			<component :is="sidebarComponent">

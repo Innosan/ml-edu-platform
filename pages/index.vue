@@ -20,6 +20,9 @@ definePageMeta({
 	middleware: ["auth"],
 });
 
+const userStore = useUserStore();
+userStore.fetchUser();
+
 const infoBadges = computed(() => [
 	{ label: mockTests.length + " тестов", color: "gray" },
 	{

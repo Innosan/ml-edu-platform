@@ -12,7 +12,9 @@ useHead({
 		},
 	],
 });
+const runtimeConfig = useRuntimeConfig();
 const userStore = useUserStore();
+const authStore = useAuthStore();
 
 const tabs = [
 	{
@@ -38,7 +40,7 @@ const showCodeBlock = ref(false);
 
 const onAuthButtonClick = (index: number) => {
 	if (index === 0) {
-		userStore.login(email.value, password.value);
+		authStore.login(email.value, password.value);
 	} else if (index === 1) {
 		showCodeBlock.value = true;
 	} else if (index === 1 && showCodeBlock.value) {
@@ -106,14 +108,14 @@ const clearInputs = () => {
 					<UInput
 						v-model="email"
 						type="email"
-						id="email"
+						id="email-reg"
 						label="Email"
 						placeholder="user@gmail.com"
 						icon="i-heroicons-envelope-solid"
 					/>
 					<UInput
 						v-model="password"
-						id="password"
+						id="password-reg"
 						label="Password"
 						placeholder="••••••••"
 						type="password"
