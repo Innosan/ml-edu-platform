@@ -1,10 +1,6 @@
-# Nuxt Template
+# Write Grade
 
-This project is a Nuxt 3 application template with TypeScript support. It includes a basic navigation setup and some utility components.
-
-# Project Structure
-
-This project is a Nuxt 3 application template with TypeScript support. It includes a basic navigation setup, some utility components, and state management using Pinia.
+A web application that uses AI to evaluate essays, providing feedback on grammar, style, coherence, and overall proficiency. This tool is designed to assist students and writers in improving their essay writing skills
 
 ## Folder Structure
 
@@ -93,6 +89,13 @@ bun install
 
 ## Deployment
 
+Don't forget to create .env file with the following content:
+```dotenv
+NUXT_PUBLIC_API_URL=YOUR_API_URL
+```
+
+Then run the following command to start the application:
+
 ```bash
 # bun
 bun run dev
@@ -114,5 +117,3 @@ yarn dev
 ```
 
 Check out the [Deployment guide](https://nuxt.com/docs/getting-started/deployment) for more information.  
-License
-This project is licensed under the MIT License
