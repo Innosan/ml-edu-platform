@@ -2,12 +2,14 @@ import { type NitroFetchOptions } from "nitropack";
 
 import { persistOptions } from "~/utils/persistence";
 import { errored, success } from "~/types/server/ResponseInfo";
+import { noUser, users } from "~/types/data/User";
 
 export const useAuthStore = defineStore(
 	"auth-store",
 	() => {
 		const toast = useToast();
 		const config = useRuntimeConfig();
+
 		const accessToken = useState("access-token", () => "");
 		const refreshToken = useState("refresh-token", () => "");
 
@@ -31,38 +33,47 @@ export const useAuthStore = defineStore(
 					},
 				});
 			} catch (error: any) {
-				if (error.response?.status === 401) {
-					await refreshAccessToken();
+				await refreshAccessToken();
 
-					options.headers.Authorization = `Bearer ${accessToken.value}`;
-					return await $fetch(url, options);
-				}
-				throw error;
+				options.headers.Authorization = `Bearer ${accessToken.value}`;
+				return await $fetch(url, options);
 			}
 		};
 
 		const login = async (email: string, password: string) => {
-			try {
-				const response = await $fetch(
-					config.public.apiUrl + "/auth/login",
-					{
-						method: "POST",
-						body: {
-							email,
-							password,
-						},
-					},
-				);
-
+			if (
+				users.some(
+					(user) =>
+						user.email === email && user.password === password,
+				)
+			) {
 				toast.add(success("Вы успешно вошли в систему!").notification);
 
-				accessToken.value = response.accessToken;
-				refreshToken.value = response.refreshToken;
-
+				accessToken.value = email;
+				refreshToken.value = email;
 				await navigateTo("/");
-			} catch (error: any) {
-				toast.add(errored("Вход не удался").notification);
 			}
+			// try {
+			// 	const response = await $fetch(
+			// 		config.public.apiUrl + "/auth/login",
+			// 		{
+			// 			method: "POST",
+			// 			body: {
+			// 				email,
+			// 				password,
+			// 			},
+			// 		},
+			// 	);
+			//
+			// 	toast.add(success("Вы успешно вошли в систему!").notification);
+			//
+			// 	accessToken.value = response.accessToken;
+			// 	refreshToken.value = response.refreshToken;
+			//
+			// 	await navigateTo("/");
+			// } catch (error: any) {
+			// 	toast.add(errored("Вход не удался").notification);
+			// }
 		};
 
 		const refreshAccessToken = async () => {
@@ -77,7 +88,7 @@ export const useAuthStore = defineStore(
 
 				accessToken.value = response.accessToken;
 			} catch (error) {
-				console.error("Token refresh failed:", error);
+				toast.add(errored("Пожалуйста, войдите еше раз!").notification);
 
 				await logout();
 			}
@@ -86,6 +97,8 @@ export const useAuthStore = defineStore(
 		const logout = async () => {
 			accessToken.value = "";
 			refreshToken.value = "";
+
+			toast.add(success("Вы успешно вышли из системы!").notification);
 
 			await navigateTo("/sign-in");
 		};

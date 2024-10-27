@@ -62,7 +62,7 @@ const clearInputs = () => {
 
 <template>
 	<div class="m-auto md:w-1/2 flex gap-12 flex-col items-center">
-		<h1 class="text-3xl text-primary-500 font-extrabold">ML Edu Learner</h1>
+		<h1 class="text-3xl text-primary-500 font-extrabold">Write Grade</h1>
 		<UTabs
 			:items="tabs"
 			class="w-full"
@@ -146,7 +146,7 @@ const clearInputs = () => {
 					class="mt-4"
 					icon="i-heroicons-information-circle-solid"
 					title="Доступные аккаунты для входа"
-					description="user@gmail.com:password, teacher@gmail.com:password1"
+					description="user@gmail.com:user, teacher@gmail.com:teacher"
 				/>
 			</template>
 		</UTabs>

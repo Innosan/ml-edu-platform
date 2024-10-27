@@ -58,20 +58,14 @@ export const teacherNavigation: NavigationLink[] = [
 	},
 	{
 		id: 2,
-		to: "/tests",
-		label: "Все тесты",
-		icon: "i-heroicons-academic-cap-solid",
-	},
-	{
-		id: 3,
 		to: "/students",
-		label: "Студенты",
+		label: "Мои студенты",
 		icon: "i-heroicons-users-solid",
 	},
 	{
 		id: 3,
 		to: "/settings",
 		label: "Настройки",
-		icon: "i-heroicons-gear-solid",
+		icon: "i-heroicons-cog-solid",
 	},
 ];

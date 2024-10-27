@@ -4,6 +4,6 @@ definePageMeta({
 });
 </script>
 
-<template></template>
-
-<style scoped></style>
+<template>
+	<PageSection title="Расписание"> </PageSection>
+</template>

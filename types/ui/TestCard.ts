@@ -1,3 +1,6 @@
+import type { Question } from "~/types/data/Test";
+import { questions } from "~/types/data/Test";
+
 export type TestCard = {
 	id: string;
 	title: string;
@@ -5,6 +8,7 @@ export type TestCard = {
 	date: string;
 	length: number;
 	isCompleted: boolean;
+	questions: Question[];
 };
 
 const returnDate = (day: number, month: number) => {
@@ -22,6 +26,7 @@ export const mockTests: TestCard[] = [
 		length: 10,
 		date: returnDate(1, 9).toString(),
 		isCompleted: true,
+		questions: [questions[0], questions[1]],
 	},
 	{
 		id: "2",
@@ -30,6 +35,7 @@ export const mockTests: TestCard[] = [
 		length: 15,
 		date: returnDate(4, 9).toString(),
 		isCompleted: true,
+		questions: [questions[2], questions[3]],
 	},
 	{
 		id: "3",
@@ -38,6 +44,7 @@ export const mockTests: TestCard[] = [
 		length: 20,
 		date: returnDate(4, 9).toString(),
 		isCompleted: false,
+		questions: [questions[0], questions[1]],
 	},
 	{
 		id: "4",
@@ -46,6 +53,7 @@ export const mockTests: TestCard[] = [
 		length: 25,
 		date: returnDate(4, 9).toString(),
 		isCompleted: false,
+		questions: [questions[2], questions[3]],
 	},
 	{
 		id: "5",
@@ -54,6 +62,7 @@ export const mockTests: TestCard[] = [
 		length: 30,
 		date: returnDate(7, 9).toString(),
 		isCompleted: false,
+		questions: [questions[0], questions[1]],
 	},
 	{
 		id: "6",
@@ -62,6 +71,7 @@ export const mockTests: TestCard[] = [
 		length: 35,
 		date: returnDate(7, 9).toString(),
 		isCompleted: false,
+		questions: [questions[2], questions[3]],
 	},
 	{
 		id: "7",
@@ -70,6 +80,7 @@ export const mockTests: TestCard[] = [
 		length: 40,
 		date: returnDate(10, 9).toString(),
 		isCompleted: false,
+		questions: [questions[0], questions[1]],
 	},
 	{
 		id: "8",
@@ -78,6 +89,7 @@ export const mockTests: TestCard[] = [
 		length: 45,
 		date: returnDate(15, 9).toString(),
 		isCompleted: false,
+		questions: [questions[2], questions[3]],
 	},
 	{
 		id: "9",
@@ -86,6 +98,7 @@ export const mockTests: TestCard[] = [
 		length: 50,
 		date: returnDate(15, 9).toString(),
 		isCompleted: false,
+		questions: [questions[0], questions[1]],
 	},
 	{
 		id: "10",
@@ -94,5 +107,6 @@ export const mockTests: TestCard[] = [
 		length: 55,
 		date: returnDate(21, 9).toString(),
 		isCompleted: false,
+		questions: [questions[2], questions[3]],
 	},
 ];

@@ -1,38 +1,48 @@
 export type User = {
-	id: number;
-	name: string;
+	edClasses: number[];
+	testings: number[];
 	email: string;
 	password: string;
-	role: number;
+	isTeacher: boolean;
+	nameOfUser: string;
+	surnameOfUser: string;
 };
 
+export const noUser: User = {
+	edClasses: [],
+	testings: [],
+	email: "",
+	isTeacher: false,
+	password: "",
+	nameOfUser: "",
+	surnameOfUser: "",
+};
+
+export const fullName = (user: User) =>
+	`${user.nameOfUser} ${user.surnameOfUser}`;
+
 export enum UserRoles {
-	GUEST = -1,
 	USER,
 	TEACHER,
 }
 
-export const noUser = {
-	id: 0,
-	name: "",
-	email: "",
-	password: "",
-	role: UserRoles.GUEST,
-};
-
-export const users: User[] = [
+export const users = [
 	{
-		id: 1,
-		name: "John Doe",
+		edClasses: [],
+		testings: [],
 		email: "user@gmail.com",
-		password: "password",
-		role: UserRoles.USER,
+		password: "user",
+		isTeacher: false,
+		nameOfUser: "John",
+		surnameOfUser: "Doe",
 	},
 	{
-		id: 2,
-		name: "Jane Doe",
+		edClasses: [],
+		testings: [],
 		email: "teacher@gmail.com",
-		password: "password1",
-		role: UserRoles.TEACHER,
+		password: "teacher",
+		isTeacher: true,
+		nameOfUser: "Jane",
+		surnameOfUser: "Doe",
 	},
 ];

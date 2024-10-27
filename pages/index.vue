@@ -22,6 +22,7 @@ definePageMeta({
 
 const userStore = useUserStore();
 userStore.fetchUser();
+const authStore = useAuthStore();
 
 const infoBadges = computed(() => [
 	{ label: mockTests.length + " тестов", color: "gray" },
