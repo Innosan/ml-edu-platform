@@ -1,4 +1,4 @@
-import { noUser, type User } from "~/types/data/User";
+import { noUser, type User, users } from "~/types/data/User";
 
 import { persistOptions } from "~/utils/persistence";
 import { defineStore } from "pinia";
@@ -13,12 +13,14 @@ export const useUserStore = defineStore(
 		const user = useState("current-user", () => noUser as User);
 
 		const fetchUser = async () => {
-			user.value = await authStore.fetchWithAuth(
-				runtimeConfig.public.apiUrl + "/auth/user/",
-				{
-					method: "GET",
-				},
-			);
+			user.value =
+				users.find((u) => u.email === authStore.accessToken) || noUser;
+			// user.value = await authStore.fetchWithAuth(
+			// 	runtimeConfig.public.apiUrl + "/auth/user/",
+			// 	{
+			// 		method: "GET",
+			// 	},
+			// );
 		};
 
 		return {

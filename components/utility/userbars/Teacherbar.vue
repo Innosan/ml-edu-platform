@@ -1,12 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { CardSizes } from "~/types/ui/CardSizes";
+</script>
 
 <template>
-	<PageSection size="sm" title="Ученики" icon="i-heroicons-user-group">
-		<div class="flex flex-col bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
-			<div class="flex gap-1 text-sm opacity-70">
-				<p>Вася</p>
-			</div>
-			<p class="font-bold">Русский язык / Тест 2 / 3.6 балла</p>
-		</div>
-	</PageSection>
+	<div class="flex flex-col gap-2.5">
+		<UButton label="Создать тест" icon="i-heroicons-plus" />
+		<UButton label="Создать новость" icon="i-heroicons-plus" />
+	</div>
 </template>

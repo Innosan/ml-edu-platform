@@ -42,6 +42,8 @@ const buttonState = computed(() => {
 		</div>
 		<UButton
 			:label="buttonState.label"
+			:disabled="props.test.isCompleted"
+			@click="() => $router.push(`/test/${test.id}`)"
 			variant="link"
 			size="xs"
 			:color="buttonState.color as ButtonColor"

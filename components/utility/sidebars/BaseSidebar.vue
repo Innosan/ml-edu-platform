@@ -32,18 +32,18 @@ const navigation = computed(() => {
 				class="w-full"
 			/>
 
-			<UButton
-				label="Refresh token"
-				@click="authStore.refreshAccessToken"
-			/>
+			<!--			<UButton-->
+			<!--				label="Refresh token"-->
+			<!--				@click="authStore.refreshAccessToken"-->
+			<!--			/>-->
 
 			<TeacherSidebar v-if="sidebarComponent === Sidebars.TEACHER" />
 			<UserSidebar v-else-if="sidebarComponent === Sidebars.USER" />
 
 			<ClientOnly>
 				<div class="flex self-start gap-2 items-center">
-					<ThemeSwitch />
 					<ColorSwitch />
+					<ThemeSwitch />
 				</div>
 			</ClientOnly>
 		</div>

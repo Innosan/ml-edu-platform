@@ -2,7 +2,7 @@ import { type NitroFetchOptions } from "nitropack";
 
 import { persistOptions } from "~/utils/persistence";
 import { errored, success } from "~/types/server/ResponseInfo";
-import { noUser } from "~/types/data/User";
+import { noUser, users } from "~/types/data/User";
 
 export const useAuthStore = defineStore(
 	"auth-store",
@@ -41,27 +41,39 @@ export const useAuthStore = defineStore(
 		};
 
 		const login = async (email: string, password: string) => {
-			try {
-				const response = await $fetch(
-					config.public.apiUrl + "/auth/login",
-					{
-						method: "POST",
-						body: {
-							email,
-							password,
-						},
-					},
-				);
-
+			if (
+				users.some(
+					(user) =>
+						user.email === email && user.password === password,
+				)
+			) {
 				toast.add(success("Вы успешно вошли в систему!").notification);
 
-				accessToken.value = response.accessToken;
-				refreshToken.value = response.refreshToken;
-
+				accessToken.value = email;
+				refreshToken.value = email;
 				await navigateTo("/");
-			} catch (error: any) {
-				toast.add(errored("Вход не удался").notification);
 			}
+			// try {
+			// 	const response = await $fetch(
+			// 		config.public.apiUrl + "/auth/login",
+			// 		{
+			// 			method: "POST",
+			// 			body: {
+			// 				email,
+			// 				password,
+			// 			},
+			// 		},
+			// 	);
+			//
+			// 	toast.add(success("Вы успешно вошли в систему!").notification);
+			//
+			// 	accessToken.value = response.accessToken;
+			// 	refreshToken.value = response.refreshToken;
+			//
+			// 	await navigateTo("/");
+			// } catch (error: any) {
+			// 	toast.add(errored("Вход не удался").notification);
+			// }
 		};
 
 		const refreshAccessToken = async () => {
