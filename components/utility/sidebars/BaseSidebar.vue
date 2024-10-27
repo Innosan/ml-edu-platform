@@ -1,37 +1,24 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { UserRoles } from "~/types/data/User";
-
-import UserSidebar from "~/components/utility/sidebars/UserSidebar.vue";
-import TeacherSidebar from "~/components/utility/sidebars/TeacherSidebar.vue";
 
 import { teacherNavigation, userNavigation } from "~/utils/navigation";
+import { Sidebars } from "~/components/utility/sidebars/Sidebars";
 
 const userStore = useUserStore();
-const role = computed(() => userStore.user.role);
+const authStore = useAuthStore();
 
 const sidebarComponent = computed(() => {
-	switch (role.value) {
-		case UserRoles.TEACHER:
-			return TeacherSidebar;
-		case UserRoles.USER:
-			return UserSidebar;
-	}
+	return userStore.user.isTeacher ? Sidebars.TEACHER : Sidebars.USER;
 });
 
 const navigation = computed(() => {
-	switch (role.value) {
-		case UserRoles.TEACHER:
-			return teacherNavigation;
-		case UserRoles.USER:
-			return userNavigation;
-	}
+	return userStore.user.isTeacher ? teacherNavigation : userNavigation;
 });
 </script>
 
 <template>
 	<header
-		v-if="role !== UserRoles.GUEST"
+		v-if="authStore.refreshToken"
 		class="flex w-full text-nowrap items-center"
 	>
 		<div class="flex flex-col w-full gap-6 items-center">
@@ -41,18 +28,22 @@ const navigation = computed(() => {
 				icon="i-heroicons-arrow-right-start-on-rectangle-solid"
 				color="red"
 				variant="soft"
-				@click="userStore.logout"
+				@click="authStore.logout"
 				class="w-full"
 			/>
 
-			<component :is="sidebarComponent">
-				<slot />
-			</component>
+			<!--			<UButton-->
+			<!--				label="Refresh token"-->
+			<!--				@click="authStore.refreshAccessToken"-->
+			<!--			/>-->
+
+			<TeacherSidebar v-if="sidebarComponent === Sidebars.TEACHER" />
+			<UserSidebar v-else-if="sidebarComponent === Sidebars.USER" />
 
 			<ClientOnly>
 				<div class="flex self-start gap-2 items-center">
-					<ThemeSwitch />
 					<ColorSwitch />
+					<ThemeSwitch />
 				</div>
 			</ClientOnly>
 		</div>

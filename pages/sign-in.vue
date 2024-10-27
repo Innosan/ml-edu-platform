@@ -12,7 +12,9 @@ useHead({
 		},
 	],
 });
+const runtimeConfig = useRuntimeConfig();
 const userStore = useUserStore();
+const authStore = useAuthStore();
 
 const tabs = [
 	{
@@ -38,7 +40,7 @@ const showCodeBlock = ref(false);
 
 const onAuthButtonClick = (index: number) => {
 	if (index === 0) {
-		userStore.login(email.value, password.value);
+		authStore.login(email.value, password.value);
 	} else if (index === 1) {
 		showCodeBlock.value = true;
 	} else if (index === 1 && showCodeBlock.value) {
@@ -60,7 +62,7 @@ const clearInputs = () => {
 
 <template>
 	<div class="m-auto md:w-1/2 flex gap-12 flex-col items-center">
-		<h1 class="text-3xl text-primary-500 font-extrabold">ML Edu Learner</h1>
+		<h1 class="text-3xl text-primary-500 font-extrabold">Write Grade</h1>
 		<UTabs
 			:items="tabs"
 			class="w-full"
@@ -106,14 +108,14 @@ const clearInputs = () => {
 					<UInput
 						v-model="email"
 						type="email"
-						id="email"
+						id="email-reg"
 						label="Email"
 						placeholder="user@gmail.com"
 						icon="i-heroicons-envelope-solid"
 					/>
 					<UInput
 						v-model="password"
-						id="password"
+						id="password-reg"
 						label="Password"
 						placeholder="••••••••"
 						type="password"
@@ -144,7 +146,7 @@ const clearInputs = () => {
 					class="mt-4"
 					icon="i-heroicons-information-circle-solid"
 					title="Доступные аккаунты для входа"
-					description="user@gmail.com:password, teacher@gmail.com:password1"
+					description="user@gmail.com:user, teacher@gmail.com:teacher"
 				/>
 			</template>
 		</UTabs>

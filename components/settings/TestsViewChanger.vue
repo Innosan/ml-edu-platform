@@ -19,7 +19,11 @@ const views = Object.entries(TestViews).filter(([_, k]) => Number.isInteger(k));
 			:color="getButtonColor(idx) as ButtonColor"
 			:key="idx"
 			variant="solid"
-			icon="i-heroicons-bars-3-20-solid"
+			:icon="
+				key === settingsStore.testsView
+					? 'i-heroicons-check-solid'
+					: undefined
+			"
 			:label="testViewsLabels[key as TestViews]"
 		/>
 	</UButtonGroup>

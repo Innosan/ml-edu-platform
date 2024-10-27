@@ -1,5 +1,4 @@
 import { noUser, type User, users } from "~/types/data/User";
-import { getToast, Toasts } from "~/types/ui/Notification";
 
 import { persistOptions } from "~/utils/persistence";
 import { defineStore } from "pinia";
@@ -7,39 +6,26 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore(
 	"user-store",
 	() => {
+		const authStore = useAuthStore();
+		const runtimeConfig = useRuntimeConfig();
 		const toast = useToast();
+
 		const user = useState("current-user", () => noUser as User);
 
-		const login = (email: string, password: string) => {
-			const foundUser = users.find(
-				(u) => u.email === email && u.password === password,
-			);
-
-			if (foundUser) {
-				user.value = foundUser;
-				toast.add(
-					getToast(Toasts.SUCCESS, "Вы успешно вошли в систему"),
-				);
-
-				navigateTo("/");
-
-				return true;
-			}
-
-			toast.add(getToast(Toasts.ERROR, "Неверный логин или пароль"));
-			return false;
-		};
-
-		const logout = () => {
-			user.value = noUser;
-			navigateTo("/sign-in");
-			toast.add(getToast(Toasts.INFO, "Вы вышли из системы"));
+		const fetchUser = async () => {
+			user.value =
+				users.find((u) => u.email === authStore.accessToken) || noUser;
+			// user.value = await authStore.fetchWithAuth(
+			// 	runtimeConfig.public.apiUrl + "/auth/user/",
+			// 	{
+			// 		method: "GET",
+			// 	},
+			// );
 		};
 
 		return {
 			user,
-			login,
-			logout,
+			fetchUser,
 		};
 	},
 	{

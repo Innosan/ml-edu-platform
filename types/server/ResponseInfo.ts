@@ -12,7 +12,7 @@ export const success = (description?: string): ResponseInfo => ({
 	notification: getToast(Toasts.SUCCESS, description),
 });
 
-export const error = (description?: string): ResponseInfo => ({
+export const errored = (description?: string): ResponseInfo => ({
 	status: 400,
 	success: false,
 	notification: getToast(Toasts.ERROR, description),

@@ -1,6 +1,12 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 
+	runtimeConfig: {
+		public: {
+			apiUrl: "",
+		},
+	},
+
 	modules: [
 		"@nuxt/ui",
 		"@formkit/auto-animate/nuxt",
